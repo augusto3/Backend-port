@@ -23,21 +23,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/universidad")
-@CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com"})
+@CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
 public class UniversidadController {
     @Autowired
     private IUniversidadService implUniversidad;
 
     @GetMapping("/datos")
     @ResponseBody
-    @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com"})
+    @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
     public ResponseEntity<List<Universidad>> getUniversidad(){
         List<Universidad> list = implUniversidad.list();
         return new ResponseEntity(list, HttpStatus.OK);
     }
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/crear")
-    @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com"})
+    @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
     public ResponseEntity<?> CreateUniversidad(@RequestBody dtoUniversidad uni){
         if(StringUtils.isBlank(uni.getNombreUniversidad())){
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
@@ -51,7 +51,7 @@ public class UniversidadController {
     }
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/borrar/{id}")
-    @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com"})
+    @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
     public ResponseEntity<?> delete(@PathVariable("id") int id){
         if(!implUniversidad.existsById(id)){
             return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.NOT_FOUND);
@@ -61,7 +61,7 @@ public class UniversidadController {
     }
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/edit/{id}")
-    @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com"})
+    @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
     public ResponseEntity<?> editSobreMi(@PathVariable("id") int id, @RequestBody dtoUniversidad dtoUni){
         if(!implUniversidad.existsById(id)){
             return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.NOT_FOUND);
