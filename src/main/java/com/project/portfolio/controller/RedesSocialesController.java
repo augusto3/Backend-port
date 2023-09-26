@@ -20,7 +20,7 @@ public class RedesSocialesController {
     
     @GetMapping("/datos")
     @ResponseBody
-//    @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
+    @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
     public ResponseEntity<List<RedesSociales>> getRedes(){
         List<RedesSociales> list = redes.list();
         return new ResponseEntity(list, HttpStatus.OK);

@@ -28,13 +28,13 @@ public class MensajesController {
     @PreAuthorize("hasRole('ADMIN')")    
     @GetMapping("/datos")
     @ResponseBody
-//    @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
+    @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
     public ResponseEntity<List<Mensajes>> get(){
         List<Mensajes> list = msj.list();
         return new ResponseEntity(list, HttpStatus.OK);
     }
     @PostMapping("/crear")
-//    @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
+    @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
     public ResponseEntity<?> Create(@RequestBody dtoMensaje dtomensaje){
         Mensajes mensaje = new Mensajes (dtomensaje.getNombre(), dtomensaje.getApellido(),dtomensaje.getCelular(), dtomensaje.getEmail(),dtomensaje.getMensaje(),dtomensaje.getFecha());
         msj.save(mensaje);
@@ -42,7 +42,7 @@ public class MensajesController {
     }
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/borrar/{id}")
-//    @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
+    @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
     public ResponseEntity<?> delete(@PathVariable("id") int id){
         if(!msj.existsById(id)){
             return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.NOT_FOUND);

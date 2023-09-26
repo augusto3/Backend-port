@@ -44,7 +44,6 @@ com\project\portfolio\service\MensajesService.class
 com\project\portfolio\controller\MisHabilidadesController.class
 com\project\portfolio\model\Proyectos.class
 com\project\portfolio\model\SobreMi.class
-com\project\portfolio\WebConfig.class
 com\project\portfolio\service\RedesSocialesService.class
 com\project\portfolio\security\MainSecurity.class
 com\project\portfolio\model\Cursos.class
