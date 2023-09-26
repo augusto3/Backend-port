@@ -23,21 +23,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/sobremi")
-@CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
 public class SobreMiController {
     @Autowired
     private ISobreMiService implSobreMi;
 
     @GetMapping("/datos")
     @ResponseBody
-    @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
+//    @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
     public ResponseEntity<List<SobreMi>> get(){
         List<SobreMi> list = implSobreMi.list();
         return new ResponseEntity(list, HttpStatus.OK);
     }
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/crear")
-    @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
+//    @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
     public ResponseEntity<?> Create(@RequestBody dtoSobreMi sobre){
         if(StringUtils.isBlank(sobre.getNombre())){
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
@@ -51,7 +50,7 @@ public class SobreMiController {
     }
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/borrar/{id}")
-    @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
+//    @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
     public ResponseEntity<?> delete(@PathVariable("id") int id){
         if(!implSobreMi.existsById(id)){
             return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.NOT_FOUND);
@@ -61,7 +60,7 @@ public class SobreMiController {
     }
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/edit/{id}")
-    @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
+//    @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
     public ResponseEntity<?> edit(@PathVariable("id") int id, @RequestBody dtoSobreMi dtosobre){
         if(!implSobreMi.existsById(id)){
             return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.NOT_FOUND);

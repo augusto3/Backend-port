@@ -12,20 +12,19 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
 public class AuthController {
     @Autowired
     UsuarioService usuarioService;
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/nuevo")
-    @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
+//    @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
     public ResponseEntity<?> nuevo(@Valid @RequestBody NuevoUsuario nuevoUsuario){
         return usuarioService.save(nuevoUsuario);
     }    
     
     @PostMapping("/login")
-    @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
+//    @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
     public ResponseEntity<?> login(@Valid @RequestBody LoginUsuario loginUsuario){
         return usuarioService.login(loginUsuario);
     }

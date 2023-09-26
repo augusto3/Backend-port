@@ -23,21 +23,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/proyectos")
-@CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
 public class ProyectosController {
     @Autowired
     private IProyectosService proyec;
     
     @GetMapping("/datos")
     @ResponseBody
-    @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
+//    @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
     public ResponseEntity<List<Proyectos>> get(){
         List<Proyectos> list = proyec.list();
         return new ResponseEntity(list, HttpStatus.OK);
     }
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/crear")
-    @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
+//    @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
     public ResponseEntity<?> Create(@RequestBody dtoProyectos proy){
         if(StringUtils.isBlank(proy.getNameProyectos())){
             return new ResponseEntity(new Mensaje("El titulo es obligatorio"), HttpStatus.BAD_REQUEST);
@@ -51,7 +50,7 @@ public class ProyectosController {
     }
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/borrar/{id}")
-    @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
+//    @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
     public ResponseEntity<?> delete(@PathVariable("id") int id){
         if(!proyec.existsById(id)){
             return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.NOT_FOUND);
@@ -62,7 +61,7 @@ public class ProyectosController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/edit/{id}")
-    @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
+//    @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
     public ResponseEntity<?> edit(@PathVariable("id") int id, @RequestBody dtoProyectos dtoproyec){
         if(!proyec.existsById(id)){
             return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.NOT_FOUND);

@@ -23,21 +23,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/habilidades")
-@CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
 public class MisHabilidadesController {
     @Autowired
     private IMisHabilidadesService habil;
 
     @GetMapping("/datos")
     @ResponseBody
-    @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
+//    @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
     public ResponseEntity<List<MisHabilidades>> get(){
         List<MisHabilidades> list = habil.list();
         return new ResponseEntity(list, HttpStatus.OK);
     }
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/crear")
-    @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
+//    @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
     public ResponseEntity<?> Create(@RequestBody dtoMisHabilidades dtohabil){
         if(StringUtils.isBlank(dtohabil.getLenguaje())){
             return new ResponseEntity(new Mensaje("El lenguaje es obligatorio"), HttpStatus.BAD_REQUEST);
@@ -52,7 +51,7 @@ public class MisHabilidadesController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/borrar/{id}")
-    @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
+//    @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
     public ResponseEntity<?> delete(@PathVariable("id") int id){
         if(!habil.existsById(id)){
             return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.NOT_FOUND);
@@ -62,7 +61,7 @@ public class MisHabilidadesController {
     }
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/edit/{id}")
-    @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
+//    @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
     public ResponseEntity<?> edit(@PathVariable("id") int id, @RequestBody dtoMisHabilidades dtohabil){
         if(!habil.existsById(id)){
             return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.NOT_FOUND);
