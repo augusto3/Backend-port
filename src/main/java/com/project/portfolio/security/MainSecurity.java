@@ -38,7 +38,9 @@ public class MainSecurity {
         builder.userDetailsService(userDetailsServiceImpl).passwordEncoder(passwordEncoder);
         authenticationManager = builder.build();
         http.authenticationManager(authenticationManager);
+//        http.cors(Customizer.withDefaults());
         http.csrf(csrf -> csrf.disable());
+//        http.authorizeHttpRequests(auth -> auth.requestMatchers("/**").permitAll().anyRequest().authenticated());
         http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         http.exceptionHandling(exc -> exc.authenticationEntryPoint(jwtEntryPoint));
         http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
