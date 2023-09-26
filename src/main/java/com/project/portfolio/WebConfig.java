@@ -1,5 +1,5 @@
 package com.project.portfolio;
-/**
+
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -11,8 +11,8 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com/sobremi")
+                .allowedOrigins("https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200")
                 .allowedMethods("GET","PUT","POST","DELETE")
                 .maxAge(3600);
     }
-}**/
+}
