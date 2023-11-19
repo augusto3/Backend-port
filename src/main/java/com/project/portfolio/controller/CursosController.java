@@ -34,7 +34,6 @@ public class CursosController {
         List<Cursos> list = curso.list();
         return new ResponseEntity(list, HttpStatus.OK);
     }
-    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/crear")
     @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
     public ResponseEntity<?> Create(@RequestBody dtoCursos dtocurso){
@@ -48,7 +47,6 @@ public class CursosController {
         curso.save(Cursossave);
         return new ResponseEntity(new Mensaje("curso ha sido creada"), HttpStatus.OK);
     }
-    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/borrar/{id}")
     @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
     public ResponseEntity<?> delete(@PathVariable("id") int id){
@@ -58,7 +56,6 @@ public class CursosController {
         curso.delete(id);
         return new ResponseEntity(new Mensaje("el curso ha sido eliminada"), HttpStatus.OK);
     }
-    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/edit/{id}")
     @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
     public ResponseEntity<?> edit(@PathVariable("id") int id, @RequestBody dtoCursos dtocurso){

@@ -4,6 +4,7 @@ import com.project.portfolio.interfaz.IRedesSocialesService;
 import com.project.portfolio.model.RedesSociales;
 import com.project.portfolio.repository.RedesSocialesRepository;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,20 +16,28 @@ public class RedesSocialesService implements IRedesSocialesService{
     public List<RedesSociales> list() {
         return redes.findAll();
     }
-}
-/**    @Override
-    public void saveRedes(RedesSociales redesSociales) {
+    @Override
+    public void save(RedesSociales redesSociales) {
         redes.save(redesSociales);
     }
-
     @Override
-    public void deleteRedes(Long id) {
+    public void delete(int id) {
         redes.deleteById(id);
     }
-
     @Override
-    public RedesSociales findRedes(Long id) {
-        RedesSociales redesSo = redes.findById(id).orElse(null);
-        return redesSo;
+    public Optional<RedesSociales> getByFacebook(String nombre){
+        return redes.findByFacebook(nombre);
     }
-}**/
+    @Override
+    public Optional<RedesSociales> getOne(int id){
+        return redes.findById(id);
+    }
+    @Override
+    public boolean existsById(int id){
+        return redes.existsById(id);
+    }
+    @Override
+    public boolean existsByFacebook(String nombre){
+        return redes.existsByFacebook(nombre);
+    }
+}

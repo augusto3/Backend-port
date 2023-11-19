@@ -38,9 +38,23 @@ public class MainSecurity {
         builder.userDetailsService(userDetailsServiceImpl).passwordEncoder(passwordEncoder);
         authenticationManager = builder.build();
         http.authenticationManager(authenticationManager);
-//        http.cors(Customizer.withDefaults());
+        http.cors(Customizer.withDefaults());
         http.csrf(csrf -> csrf.disable());
-//        http.authorizeHttpRequests(auth -> auth.requestMatchers("/**").permitAll().anyRequest().authenticated());
+        http.authorizeHttpRequests(auth -> auth
+            .requestMatchers("/auth/nuevo",
+                    "/cursos/crear","/cursos/borrar/{id}","/cursos/edit/{id}",
+                    "/experiencia/crear","/experiencia/edit/{id}","/experiencia/borrar/{id}",
+                    "/mensajes/datos","/mensajes/borrar/{id}","/habilidades/crear",
+                    "/habilidades/edit/{id}","/habilidades/borrar/{id}","/proyectos/crear",
+                    "/proyectos/edit/{id}","/proyectos/borrar/{id}","/redes/crear",
+                    "/redes/edit/{id}","/redes/borrar/{id}","/sobremi/crear",
+                    "/sobremi/edit/{id}","/sobremi/borrar/{id}","/universidad/crear",
+                    "/universidad/edit/{id}","/universidad/borrar/{id}")
+            .hasAuthority("ROLE_ADMIN")
+            .requestMatchers("/auth/login","/mensajes/crear","/cursos/datos",
+                "/experiencia/datos","/habilidades/datos","/proyectos/datos",
+                "/redes/datos","/sobremi/datos","/universidad/datos")
+            .permitAll().anyRequest().authenticated());
         http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         http.exceptionHandling(exc -> exc.authenticationEntryPoint(jwtEntryPoint));
         http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);

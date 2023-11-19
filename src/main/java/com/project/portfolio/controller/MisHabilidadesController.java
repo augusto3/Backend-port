@@ -34,7 +34,6 @@ public class MisHabilidadesController {
         List<MisHabilidades> list = habil.list();
         return new ResponseEntity(list, HttpStatus.OK);
     }
-    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/crear")
     @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
     public ResponseEntity<?> Create(@RequestBody dtoMisHabilidades dtohabil){
@@ -49,7 +48,6 @@ public class MisHabilidadesController {
         return new ResponseEntity(new Mensaje("habilidad creada"), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/borrar/{id}")
     @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
     public ResponseEntity<?> delete(@PathVariable("id") int id){
@@ -59,7 +57,6 @@ public class MisHabilidadesController {
         habil.delete(id);
         return new ResponseEntity(new Mensaje("habilidad eliminada"), HttpStatus.OK);
     }
-    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/edit/{id}")
     @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
     public ResponseEntity<?> edit(@PathVariable("id") int id, @RequestBody dtoMisHabilidades dtohabil){

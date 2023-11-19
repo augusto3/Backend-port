@@ -34,7 +34,6 @@ public class UniversidadController {
         List<Universidad> list = implUniversidad.list();
         return new ResponseEntity(list, HttpStatus.OK);
     }
-    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/crear")
     @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
     public ResponseEntity<?> CreateUniversidad(@RequestBody dtoUniversidad uni){
@@ -48,7 +47,6 @@ public class UniversidadController {
         implUniversidad.save(universidad);
         return new ResponseEntity(new Mensaje("estudios universitarios creados"), HttpStatus.OK);
     }
-    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/borrar/{id}")
     @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
     public ResponseEntity<?> delete(@PathVariable("id") int id){
@@ -58,7 +56,6 @@ public class UniversidadController {
         implUniversidad.delete(id);
         return new ResponseEntity(new Mensaje("estudios universitarios eliminados"), HttpStatus.OK);
     }
-    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/edit/{id}")
     @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
     public ResponseEntity<?> editSobreMi(@PathVariable("id") int id, @RequestBody dtoUniversidad dtoUni){

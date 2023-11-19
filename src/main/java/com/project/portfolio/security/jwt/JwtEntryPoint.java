@@ -18,12 +18,10 @@ import java.io.IOException;
 public class JwtEntryPoint implements AuthenticationEntryPoint {
 
     private final static Logger logger = LoggerFactory.getLogger(JwtEntryPoint.class);
-
     @Override
     public void commence(HttpServletRequest req, HttpServletResponse res, AuthenticationException e) throws IOException, ServletException {
-        logger.error("fail en el método commence");
-        //res.sendError(HttpServletResponse.SC_UNAUTHORIZED, "no autorizado");
-        Mensaje mensaje = new Mensaje("token inválido o vacío");
+        res.sendError(HttpServletResponse.SC_UNAUTHORIZED, "no autorizado");
+        Mensaje mensaje = new Mensaje("error"+logger.atError());
         res.setContentType("application/json");
         res.setStatus(HttpStatus.UNAUTHORIZED.value());
         res.getWriter().write(new ObjectMapper().writeValueAsString(mensaje));

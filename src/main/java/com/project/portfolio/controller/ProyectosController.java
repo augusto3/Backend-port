@@ -34,7 +34,6 @@ public class ProyectosController {
         List<Proyectos> list = proyec.list();
         return new ResponseEntity(list, HttpStatus.OK);
     }
-    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/crear")
     @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
     public ResponseEntity<?> Create(@RequestBody dtoProyectos proy){
@@ -48,7 +47,6 @@ public class ProyectosController {
         proyec.save(proyecto);
         return new ResponseEntity(new Mensaje("proyecto creado"), HttpStatus.OK);
     }
-    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/borrar/{id}")
     @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
     public ResponseEntity<?> delete(@PathVariable("id") int id){
@@ -59,7 +57,6 @@ public class ProyectosController {
         return new ResponseEntity(new Mensaje("proyecto eliminado"), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/edit/{id}")
     @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
     public ResponseEntity<?> edit(@PathVariable("id") int id, @RequestBody dtoProyectos dtoproyec){

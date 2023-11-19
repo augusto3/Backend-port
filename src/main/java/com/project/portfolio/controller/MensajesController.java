@@ -25,7 +25,6 @@ public class MensajesController {
     @Autowired
     private IMensajesService msj;
 
-    @PreAuthorize("hasRole('ADMIN')")    
     @GetMapping("/datos")
     @ResponseBody
     @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
@@ -40,7 +39,6 @@ public class MensajesController {
         msj.save(mensaje);
         return new ResponseEntity(new Mensaje("mensaje enviado"), HttpStatus.OK);    
     }
-    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/borrar/{id}")
     @CrossOrigin(origins={"https://portafolio-angular-543.web.app","https://portafolio-angular-543.firebaseapp.com","http://localhost:4200"})
     public ResponseEntity<?> delete(@PathVariable("id") int id){
