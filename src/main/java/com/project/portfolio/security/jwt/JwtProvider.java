@@ -1,5 +1,6 @@
 package com.project.portfolio.security.jwt;
 
+import com.project.portfolio.dto.Mensaje;
 import com.project.portfolio.security.entity.UsuarioPrincipal;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
@@ -56,4 +57,22 @@ public class JwtProvider {
         }
         return false;
     }
+        public Mensaje errorToken(String token) {
+        Mensaje mensaje;
+        try {
+            Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
+            mensaje = new Mensaje("true");
+        } catch (MalformedJwtException e) {
+            mensaje=new Mensaje("token mal formado");
+        } catch (UnsupportedJwtException e) {
+            mensaje=new Mensaje("token no soportado");
+        } catch (ExpiredJwtException e) {
+            mensaje=new Mensaje("token expirado");
+        } catch (IllegalArgumentException e) {
+            mensaje=new Mensaje("token vacío");
+        } catch (SignatureException e) {
+            mensaje=new Mensaje("fail en la firma");
+        }
+        return mensaje;
+        }
 }
